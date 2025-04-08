@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Unit Converter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
+</head>
+<body>
+    <h1>Unit Converter</h1>
+    
+    <div class="tabs">
+        <button onclick="openTab('length')">Length</button>
+        <button onclick="openTab('weight')">Weight</button>
+        <button onclick="openTab('temperature')">Temperature</button>
+    </div>
+    
+    <div id="length" class="tab-content">
+        <iframe src="{{ url_for('length') }}" id="lengthTab"></iframe>
+    </div>
+    
+    <div id="weight" class="tab-content" style="display: none;">
+        <iframe src="{{ url_for('weight') }}" id="weightTab"></iframe>
+    </div>
+    
+    <div id="temperature" class="tab-content" style="display: none;">
+        <iframe src="{{ url_for('temperature') }}" id="temperatureTab"></iframe>
+    </div>
+
+
+    <script>
+    function openTab(tabName) {
+        var i, tabContents, tabButtons;
+        tabContents = document.getElementsByClassName('tab-content');
+        tabButtons = document.querySelectorAll('.tabs button');
+
+        for (i = 0; i < tabContents.length; i++) {
+            tabContents[i].style.display = 'none';
+        }
+
+        tabButtons.forEach(btn => btn.classList.remove('active-tab'));
+        event.target.classList.add('active-tab');
+
+        document.getElementById(tabName).style.display = 'block';
+    }
+
+
+        // Set default active tab
+        openTab('length');
+    </script>
+</body>
+</html>
